@@ -14,7 +14,7 @@ import LoginForm from "@/components/LoginForm.vue"
       </v-col>
 
       <v-col cols="12">
-        Don't have an account yet? <RouterLink to="/register">Register</RouterLink>
+        Don't have an account yet? <RouterLink to="/register">Register <v-icon icon="mdi-open-in-new"></v-icon></RouterLink>
       </v-col>
     </v-row>
   </v-container>

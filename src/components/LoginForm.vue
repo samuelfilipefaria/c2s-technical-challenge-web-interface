@@ -5,7 +5,7 @@
       v-model="email"
       :rules="emailRules"
       label="E-mail"
-      type="text"
+      type="email"
     ></v-text-field>
 
     <v-text-field
@@ -26,7 +26,7 @@
       email: '',
       emailRules: [
         value => {
-          if (value) return true
+          if (value.trim()) return true
 
           return 'E-mail is required'
         },
@@ -39,7 +39,7 @@
       password: '123',
       passwordRules: [
         value => {
-          if (value) return true
+          if (value.trim()) return true
 
           return 'Password is required.'
         },
