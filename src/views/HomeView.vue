@@ -67,6 +67,9 @@
         } catch (error) {
           console.error(error);
         }
+      },
+      goToEditionPage() {
+        this.$router.push({path: "/edition"});
       }
     },
     mounted() {
