@@ -70,7 +70,7 @@
       methods: {
         async registerUser() {
           try {
-            const {data} = await axios.post('http://localhost:5000/users', {
+            const {data} = await axios.post('http://localhost:5000/users/create', {
               name: this.name,
               email: this.email,
               password: this.password,
