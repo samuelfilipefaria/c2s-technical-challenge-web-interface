@@ -53,7 +53,7 @@
             return 'E-mail must be valid'
           },
         ],
-        password: '123',
+        password: '',
         passwordRules: [
           value => {
             if (value.trim()) return true
