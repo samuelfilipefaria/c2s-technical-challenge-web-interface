@@ -75,6 +75,8 @@
               email: this.email,
               password: this.password,
             });
+
+            this.$router.push({ path: '/login' })
           } catch (error) {
             console.error(error);
           }
