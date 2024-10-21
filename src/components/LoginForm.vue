@@ -15,12 +15,14 @@
       type="password"
     ></v-text-field>
 
-    <v-btn class="mt-2 bg-light-blue" type="submit" block>Login</v-btn>
+    <v-btn class="mt-2 bg-light-blue" type="submit" block @click="loginUser()">Login</v-btn>
   </v-form>
 </v-sheet>
 </template>
 
 <script>
+  import axios from "axios";
+
   export default {
     data: () => ({
       email: '',
@@ -50,5 +52,19 @@
         },
       ],
     }),
+    methods: {
+      async loginUser() {
+        try {
+          const {data} = await axios.post('http://localhost:5000/users/login', {
+            email: this.email,
+            password: this.password,
+          });
+
+          localStorage.setItem("jwt_c2s_challenge", data.token);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
   }
 </script>

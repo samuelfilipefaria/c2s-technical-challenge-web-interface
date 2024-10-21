@@ -22,12 +22,14 @@
         type="password"
       ></v-text-field>
 
-      <v-btn class="mt-2 bg-light-blue" type="submit" block>Register</v-btn>
+      <v-btn class="mt-2 bg-light-blue" type="submit" block @click="registerUser()">Register</v-btn>
     </v-form>
   </v-sheet>
   </template>
 
   <script>
+    import axios from "axios";
+
     export default {
       data: () => ({
         name: '',
@@ -65,5 +67,18 @@
           },
         ],
       }),
+      methods: {
+        async registerUser() {
+          try {
+            const {data} = await axios.post('http://localhost:5000/users', {
+              name: this.name,
+              email: this.email,
+              password: this.password,
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
     }
   </script>
