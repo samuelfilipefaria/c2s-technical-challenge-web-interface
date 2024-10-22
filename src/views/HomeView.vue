@@ -1,3 +1,8 @@
+<script setup>
+import TaskList from "@/components/TaskList.vue"
+import TaskForm from "@/components/TaskForm.vue"
+</script>
+
 <template>
   <v-container class="text-center mt-5">
     <v-row>
@@ -22,6 +27,9 @@
         </v-tooltip>
 
         <v-btn max-width="200" class="mt-2 mr-2 bg-light-blue" @click="logoutUser()">Logout</v-btn>
+
+        <TaskForm/>
+        <TaskList/>
       </v-col>
     </v-row>
   </v-container>
