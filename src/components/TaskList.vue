@@ -10,6 +10,8 @@ import TaskCard from "@/components/TaskCard.vue"
     :task-type="task.task_type"
     :state="task.state"
     :url-for-scraping="task.url_for_scraping"
+    :task-id="task.id"
+    @taskDeleted="taskDeleted()"
   />
 </template>
 
@@ -32,6 +34,9 @@ import TaskCard from "@/components/TaskCard.vue"
           console.error(error);
         }
       },
+      taskDeleted() {
+        this.$emit("taskDeleted");
+      }
     },
     mounted() {
       this.getTasksData();

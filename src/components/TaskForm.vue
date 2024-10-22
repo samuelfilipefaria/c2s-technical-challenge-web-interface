@@ -59,6 +59,8 @@
         } catch (error) {
           console.error(error);
         }
+
+        this.$emit("taskCreated");
       }
     }
   }

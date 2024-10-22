@@ -28,8 +28,8 @@ import TaskForm from "@/components/TaskForm.vue"
 
         <v-btn max-width="200" class="mt-2 mr-2 bg-light-blue" @click="logoutUser()">Logout</v-btn>
 
-        <TaskForm/>
-        <TaskList/>
+        <TaskForm @taskCreated="reloadPage()"/>
+        <TaskList @taskDeleted="reloadPage()"/>
       </v-col>
     </v-row>
   </v-container>
@@ -63,7 +63,7 @@ import TaskForm from "@/components/TaskForm.vue"
       },
       logoutUser() {
         localStorage.clear();
-        location.reload();
+        reloadPage();
       },
       async deleteUser() {
         try {
@@ -78,6 +78,9 @@ import TaskForm from "@/components/TaskForm.vue"
       },
       goToEditionPage() {
         this.$router.push({path: "/edition"});
+      },
+      reloadPage() {
+        location.reload();
       }
     },
     mounted() {
