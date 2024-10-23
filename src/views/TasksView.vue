@@ -1,23 +1,25 @@
 <script setup>
+import NavBar from "@/components/NavBar.vue"
 import TaskCard from "@/components/TaskCard.vue"
 </script>
 
 <template>
- <v-container class="my-5">
-  <h1>Tasks</h1>
+  <NavBar/>
+  <v-container class="my-5 text-center">
+    <h1>Tasks</h1>
 
-  <v-btn class="my-5 bg-light-blue" type="submit" @click="goToTaskCreation()">New task</v-btn>
+    <v-btn class="my-5 bg-light-blue" type="submit" @click="goToTaskCreation()">New task</v-btn>
 
-  <TaskCard
-    v-for="task in tasksData"
-    :description="task.description"
-    :task-type="task.task_type"
-    :state="task.state"
-    :url-for-scraping="task.url_for_scraping"
-    :task-id="task.id"
-    @loadTaskData="loadTaskData"
-  />
- </v-container>
+    <TaskCard
+      v-for="task in tasksData"
+      :description="task.description"
+      :task-type="task.task_type"
+      :state="task.state"
+      :url-for-scraping="task.url_for_scraping"
+      :task-id="task.id"
+      @loadTaskData="loadTaskData"
+    />
+  </v-container>
 </template>
 
 <script>

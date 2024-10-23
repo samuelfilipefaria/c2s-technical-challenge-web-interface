@@ -6,3 +6,11 @@
 * {
   font-family: robotoRegular;
 }
+
+.menu-link {
+  text-decoration: none;
+}
+
+.menu-link:visited {
+  color: inherit;
+}

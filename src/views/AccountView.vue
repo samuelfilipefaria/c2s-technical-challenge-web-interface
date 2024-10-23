@@ -1,12 +1,13 @@
 <script setup>
-import TaskList from "@/components/TaskList.vue"
+import NavBar from "@/components/NavBar.vue"
 </script>
 
 <template>
+  <NavBar/>
   <v-container class="text-center mt-5">
     <v-row>
       <v-col cols="12">
-        <h1>Home</h1>
+        <h1>Account</h1>
       </v-col>
 
       <v-col cols="12" v-if="user.name == '' || user.email == ''">
@@ -26,8 +27,6 @@ import TaskList from "@/components/TaskList.vue"
         </v-tooltip>
 
         <v-btn max-width="200" class="mt-2 mr-2 bg-light-blue" @click="logoutUser()">Logout</v-btn>
-
-        <TaskList/>
       </v-col>
     </v-row>
   </v-container>

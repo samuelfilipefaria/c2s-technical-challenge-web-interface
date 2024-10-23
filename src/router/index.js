@@ -4,9 +4,20 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: import('../views/HomeView.vue')
+      path: '/account',
+      alias: '/',
+      name: 'account',
+      component: import('../views/AccountView.vue')
+    },
+    {
+      path: '/tasks',
+      name: 'tasks',
+      component: import('../views/TasksView.vue')
+    },
+    {
+      path: '/notifications',
+      name: 'notifications',
+      component: import('../views/NotificationsView.vue')
     },
     {
       path: '/register',
