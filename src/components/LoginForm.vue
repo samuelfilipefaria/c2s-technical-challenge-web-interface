@@ -63,6 +63,7 @@
           localStorage.setItem("jwt_c2s_challenge", data.token);
           this.$router.push({ path: '/' })
         } catch (error) {
+          this.$router.push({ path: "/error" });
           console.error(error);
         }
       }

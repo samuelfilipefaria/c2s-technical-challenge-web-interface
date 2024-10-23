@@ -15,7 +15,6 @@ import TaskCard from "@/components/TaskCard.vue"
     :state="task.state"
     :url-for-scraping="task.url_for_scraping"
     :task-id="task.id"
-    @taskDeleted="taskDeleted()"
     @loadTaskData="loadTaskData"
   />
  </v-container>
@@ -37,14 +36,9 @@ import TaskCard from "@/components/TaskCard.vue"
 
           this.tasksData = response.data || [];
         } catch (error) {
+          this.$router.push({ path: "/error" });
           console.error(error);
         }
-      },
-      taskDeleted() {
-        this.$emit("taskDeleted");
-      },
-      loadTaskData(taskId) {
-        this.$emit("loadTaskData", taskId);
       },
       goToTaskCreation() {
         this.$router.push({ path: "/task-creation" });

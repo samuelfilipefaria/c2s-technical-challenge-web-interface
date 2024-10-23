@@ -27,7 +27,7 @@ import TaskList from "@/components/TaskList.vue"
 
         <v-btn max-width="200" class="mt-2 mr-2 bg-light-blue" @click="logoutUser()">Logout</v-btn>
 
-        <TaskList @taskDeleted="reloadPage()" @loadTaskData="loadTaskData"/>
+        <TaskList/>
       </v-col>
     </v-row>
   </v-container>
@@ -55,6 +55,7 @@ import TaskList from "@/components/TaskList.vue"
             this.user.email = response.data.email;
 
           } catch (error) {
+            this.$router.push({ path: "/error" });
             console.error(error);
           }
         }
@@ -71,6 +72,7 @@ import TaskList from "@/components/TaskList.vue"
 
           this.logoutUser();
         } catch (error) {
+          this.$router.push({ path: "/error" });
           console.error(error);
         }
       },

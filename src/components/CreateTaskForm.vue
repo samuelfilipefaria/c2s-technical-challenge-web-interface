@@ -50,11 +50,12 @@
             task_type: this.taskType,
             url_for_scraping: this.urlForScraping,
           });
+
+          this.$router.push({ path: "/" });
         } catch (error) {
+          this.$router.push({ path: "/error" });
           console.error(error);
         }
-
-        this.$router.push({ path: "/" });
       }
     }
   }

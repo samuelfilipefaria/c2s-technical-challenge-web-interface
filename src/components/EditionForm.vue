@@ -79,6 +79,7 @@
 
             this.$router.push({ path: '/' })
           } catch (error) {
+            this.$router.push({ path: "/error" });
             console.error(error);
           }
         }

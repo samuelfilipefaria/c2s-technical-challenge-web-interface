@@ -33,14 +33,18 @@ export default {
           task_id: this.taskId,
         });
 
-        this.$emit("taskDeleted");
+        this.reloadPage();
       } catch (error) {
+        this.$router.push({ path: "/error" });
         console.error(error);
       }
     },
     goToTaskEditionPage() {
       this.$router.push({ path: `/task-edition/${this.taskId}` })
-    }
+    },
+    reloadPage() {
+      location.reload();
+    },
   },
 }
 </script>

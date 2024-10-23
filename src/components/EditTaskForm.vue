@@ -62,11 +62,13 @@
             state: this.task.state,
             url_for_scraping: this.task.urlForScraping,
           });
+
+          this.$router.push({ path: "/" });
         } catch (error) {
+          this.$router.push({ path: "/error" });
           console.error(error);
         }
 
-        this.$router.push({ path: "/" });
       },
       loadData() {
         this.task.description = this.$props.description;

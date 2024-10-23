@@ -42,10 +42,9 @@ import EditTaskForm from "@/components/EditTaskForm.vue"
           this.task = data;
           this.isLoading = false;
         } catch (error) {
+          this.$router.push({ path: "/error" });
           console.error(error);
         }
-
-        this.$emit("taskCreated");
       }
     },
     mounted() {
