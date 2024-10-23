@@ -3,32 +3,26 @@
     <v-form fast-fail @submit.prevent>
       <v-container>
         <v-row>
-          <v-col cols="3">
+          <v-col cols="12">
             <v-text-field
               v-model="description"
               label="Description"
               type="text"
             ></v-text-field>
-          </v-col>
 
-          <v-col cols="3">
             <v-combobox
               v-model="taskType"
               label="Type"
               :items="['Web Scraping']"
             ></v-combobox>
-          </v-col>
 
-          <v-col cols="3">
             <v-text-field
               v-model="urlForScraping"
               :rules="urlForWebScrapingRules"
               label="URL for Web Scraping"
               type="text"
             ></v-text-field>
-          </v-col>
 
-          <v-col cols="3">
             <v-btn class="mt-2 bg-light-blue" type="submit" @click="createTask()">Create new task</v-btn>
           </v-col>
         </v-row>
@@ -60,7 +54,7 @@
           console.error(error);
         }
 
-        this.$emit("taskCreated");
+        this.$router.push({ path: "/" });
       }
     }
   }

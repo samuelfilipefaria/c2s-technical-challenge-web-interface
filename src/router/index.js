@@ -22,6 +22,16 @@ const router = createRouter({
       path: '/edition',
       name: 'edition',
       component: import('../views/EditionView.vue')
+    },
+    {
+      path: '/task-creation',
+      name: 'task-creation',
+      component: import('../views/TaskCreationView.vue')
+    },
+    {
+      path: '/task-edition/:taskId',
+      name: 'task-edition',
+      component: import('../views/TaskEditionView.vue')
     }
   ]
 })

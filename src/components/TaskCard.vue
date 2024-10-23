@@ -5,13 +5,12 @@
     :subtitle="'Type: ' + taskType + ' | State: ' + state"
     :text="'URL for scraping: ' + urlForScraping"
   >
-    <template v-slot:actions>
-      <v-tooltip text="Are you sure you want to delete this task?" location="bottom">
-        <template v-slot:activator="{ props }">
-          <v-btn max-width="200" class="mt-2 mx-auto bg-red-accent-3" @click="deleteTask()" v-bind="props"><v-icon icon="mdi-trash-can" size="20"/></v-btn>
-        </template>
-      </v-tooltip>
-    </template>
+    <v-row class="my-2 mx-auto">
+      <v-col cols="12">
+        <v-btn max-width="200" class="bg-light-blue" @click="goToTaskEditionPage()"><v-icon icon="mdi-pencil" size="20"/></v-btn>
+        <v-btn max-width="200" class="ml-3 bg-red-accent-3" @click="deleteTask()"><v-icon icon="mdi-trash-can" size="20"/></v-btn>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
@@ -39,6 +38,9 @@ export default {
         console.error(error);
       }
     },
+    goToTaskEditionPage() {
+      this.$router.push({ path: `/task-edition/${this.taskId}` })
+    }
   },
 }
 </script>

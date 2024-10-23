@@ -1,6 +1,5 @@
 <script setup>
 import TaskList from "@/components/TaskList.vue"
-import TaskForm from "@/components/TaskForm.vue"
 </script>
 
 <template>
@@ -28,8 +27,7 @@ import TaskForm from "@/components/TaskForm.vue"
 
         <v-btn max-width="200" class="mt-2 mr-2 bg-light-blue" @click="logoutUser()">Logout</v-btn>
 
-        <TaskForm @taskCreated="reloadPage()"/>
-        <TaskList @taskDeleted="reloadPage()"/>
+        <TaskList @taskDeleted="reloadPage()" @loadTaskData="loadTaskData"/>
       </v-col>
     </v-row>
   </v-container>
@@ -63,7 +61,7 @@ import TaskForm from "@/components/TaskForm.vue"
       },
       logoutUser() {
         localStorage.clear();
-        reloadPage();
+        this.reloadPage();
       },
       async deleteUser() {
         try {
@@ -81,7 +79,7 @@ import TaskForm from "@/components/TaskForm.vue"
       },
       reloadPage() {
         location.reload();
-      }
+      },
     },
     mounted() {
       this.getUserData();

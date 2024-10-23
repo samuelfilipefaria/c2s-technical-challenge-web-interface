@@ -3,7 +3,11 @@ import TaskCard from "@/components/TaskCard.vue"
 </script>
 
 <template>
+ <v-container class="my-5">
   <h1>Tasks</h1>
+
+  <v-btn class="my-5 bg-light-blue" type="submit" @click="goToTaskCreation()">New task</v-btn>
+
   <TaskCard
     v-for="task in tasksData"
     :description="task.description"
@@ -12,7 +16,9 @@ import TaskCard from "@/components/TaskCard.vue"
     :url-for-scraping="task.url_for_scraping"
     :task-id="task.id"
     @taskDeleted="taskDeleted()"
+    @loadTaskData="loadTaskData"
   />
+ </v-container>
 </template>
 
 <script>
@@ -36,6 +42,12 @@ import TaskCard from "@/components/TaskCard.vue"
       },
       taskDeleted() {
         this.$emit("taskDeleted");
+      },
+      loadTaskData(taskId) {
+        this.$emit("loadTaskData", taskId);
+      },
+      goToTaskCreation() {
+        this.$router.push({ path: "/task-creation" });
       }
     },
     mounted() {
