@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="my-3"
-    :title="description"
+    :title="'#' + taskId + ' - ' + description"
     :subtitle="'Type: ' + taskType + ' | State: ' + state"
     :text="'URL for scraping: ' + urlForScraping"
   >
