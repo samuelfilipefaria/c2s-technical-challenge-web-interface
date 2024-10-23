@@ -32,6 +32,11 @@ const router = createRouter({
       path: '/task-edition/:taskId',
       name: 'task-edition',
       component: import('../views/TaskEditionView.vue')
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: import('../views/ErrorView.vue')
     }
   ]
 })
