@@ -54,11 +54,11 @@
     methods: {
       async editTask() {
         try {
-          const {data} = await axios.post('http://localhost:3000/tasks/edit', {
-            user_id: localStorage.getItem("jwt_c2s_challenge"),
-            task_id: this.task.taskId,
+          const {data} = await axios.put('http://localhost:3000/tasks/edit', {
+            token: localStorage.getItem("jwt_c2s_challenge"),
+            id: this.task.taskId,
             description: this.task.description,
-            type: this.task.taskType,
+            task_type: this.task.taskType,
             state: this.task.state,
             url_for_scraping: this.task.urlForScraping,
           });
@@ -73,6 +73,7 @@
       loadData() {
         this.task.description = this.$props.description;
         this.task.taskType = this.$props.taskType;
+        console.log(this.task.taskType);
         this.task.state = this.$props.state;
         this.task.urlForScraping = this.$props.urlForScraping;
         this.task.taskId = this.$props.taskId;

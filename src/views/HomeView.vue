@@ -47,16 +47,16 @@ import TaskList from "@/components/TaskList.vue"
       async getUserData() {
         if (localStorage.getItem("jwt_c2s_challenge")) {
           try {
-            const response = await axios.post('http://localhost:5000/users/get_data', {
-              token: localStorage.getItem("jwt_c2s_challenge"),
+            const response = await axios.get('http://localhost:5000/users/get_data', {
+              params: { token: localStorage.getItem("jwt_c2s_challenge") },
             });
 
             this.user.name = response.data.name;
             this.user.email = response.data.email;
 
           } catch (error) {
-            this.$router.push({ path: "/error" });
             console.error(error);
+            this.$router.push({ path: "/error" });
           }
         }
       },
@@ -66,8 +66,8 @@ import TaskList from "@/components/TaskList.vue"
       },
       async deleteUser() {
         try {
-          const response = await axios.post('http://localhost:5000/users/destroy', {
-            token: localStorage.getItem("jwt_c2s_challenge"),
+          const response = await axios.delete('http://localhost:5000/users/destroy', {
+            params: { token: localStorage.getItem("jwt_c2s_challenge") },
           });
 
           this.logoutUser();

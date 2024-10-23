@@ -70,7 +70,7 @@
       methods: {
         async editUser() {
           try {
-            const {data} = await axios.post('http://localhost:5000/users/edit', {
+            const {data} = await axios.put('http://localhost:5000/users/edit', {
               token: localStorage.getItem("jwt_c2s_challenge"),
               name: this.name,
               email: this.email,

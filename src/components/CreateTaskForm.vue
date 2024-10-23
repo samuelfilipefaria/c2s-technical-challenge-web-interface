@@ -44,8 +44,8 @@
       async createTask() {
         try {
           const {data} = await axios.post('http://localhost:3000/tasks/create', {
+            token: localStorage.getItem("jwt_c2s_challenge"),
             description: this.description,
-            user_id: localStorage.getItem("jwt_c2s_challenge"),
             state: "pendente",
             task_type: this.taskType,
             url_for_scraping: this.urlForScraping,

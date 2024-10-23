@@ -34,9 +34,11 @@ import EditTaskForm from "@/components/EditTaskForm.vue"
     methods: {
       async getTaskData() {
         try {
-          const {data} = await axios.post('http://localhost:3000/tasks/get_a_task', {
-            user_id: localStorage.getItem("jwt_c2s_challenge"),
-            task_id: this.$route.params.taskId,
+          const {data} = await axios.get('http://localhost:3000/tasks/get_a_task', {
+            params: {
+              token: localStorage.getItem("jwt_c2s_challenge"),
+              id: this.$route.params.taskId,
+            }
           });
 
           this.task = data;

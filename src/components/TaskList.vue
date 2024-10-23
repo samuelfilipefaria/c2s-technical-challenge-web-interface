@@ -30,8 +30,8 @@ import TaskCard from "@/components/TaskCard.vue"
     methods: {
       async getTasksData() {
         try {
-          const response = await axios.post('http://localhost:3000/tasks/get_all_user_tasks', {
-            token: localStorage.getItem("jwt_c2s_challenge"),
+          const response = await axios.get('http://localhost:3000/tasks/get_all_user_tasks', {
+            params: { token: localStorage.getItem("jwt_c2s_challenge") },
           });
 
           this.tasksData = response.data || [];

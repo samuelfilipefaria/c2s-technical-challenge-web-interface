@@ -28,9 +28,11 @@ export default {
   methods: {
     async deleteTask() {
       try {
-        const response = await axios.post('http://localhost:3000/tasks/delete', {
-          token: localStorage.getItem("jwt_c2s_challenge"),
-          task_id: this.taskId,
+        const response = await axios.delete('http://localhost:3000/tasks/delete', {
+          params: {
+            token: localStorage.getItem("jwt_c2s_challenge"),
+            id: this.taskId,
+          }
         });
 
         this.reloadPage();
