@@ -35,14 +35,19 @@ const router = createRouter({
       component: import('../views/EditionView.vue')
     },
     {
-      path: '/task-creation',
-      name: 'task-creation',
-      component: import('../views/TaskCreationView.vue')
+      path: '/user-task-creation',
+      name: 'user-task-creation',
+      component: import('../views/UserTaskCreationView.vue')
     },
     {
-      path: '/task-edition/:taskId',
-      name: 'task-edition',
-      component: import('../views/TaskEditionView.vue')
+      path: '/web-scraping-task-creation',
+      name: 'web-scraping-task-creation',
+      component: import('../views/WebScrapingTaskCreationView.vue')
+    },
+    {
+      path: '/user-task-edition/:userTaskId',
+      name: 'user-task-edition',
+      component: import('../views/UserTaskEditionView.vue')
     },
     {
       path: '/error',

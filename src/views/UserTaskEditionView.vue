@@ -1,5 +1,5 @@
 <script setup>
-import EditTaskForm from "@/components/EditTaskForm.vue"
+import EditUserTaskForm from "@/components/EditUserTaskForm.vue";
 </script>
 
 <template>
@@ -10,13 +10,11 @@ import EditTaskForm from "@/components/EditTaskForm.vue"
       </v-col>
 
       <v-col cols="12">
-        <EditTaskForm
+        <EditUserTaskForm
           v-if="!isLoading"
-          :description="task.description"
-          :task-type="task.task_type"
-          :state="task.state"
-          :url-for-scraping="task.url_for_scraping"
           :task-id="task.id"
+          :description="task.description"
+          :state="task.state"
         />
       </v-col>
     </v-row>
@@ -24,7 +22,7 @@ import EditTaskForm from "@/components/EditTaskForm.vue"
 </template>
 
 <script>
-  import axios from "axios";
+  import { getAUserTask } from '../lib/requestSender';
 
   export default {
     data: () => ({
@@ -34,14 +32,7 @@ import EditTaskForm from "@/components/EditTaskForm.vue"
     methods: {
       async getTaskData() {
         try {
-          const {data} = await axios.get('http://localhost:3000/tasks/get_a_task', {
-            params: {
-              token: localStorage.getItem("jwt_c2s_challenge"),
-              id: this.$route.params.taskId,
-            }
-          });
-
-          this.task = data;
+          this.task = await getAUserTask(this.$route.params.userTaskId);
           this.isLoading = false;
         } catch (error) {
           this.$router.push({ path: "/error" });

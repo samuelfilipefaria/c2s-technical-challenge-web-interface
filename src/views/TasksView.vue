@@ -1,6 +1,7 @@
 <script setup>
 import NavBar from "@/components/NavBar.vue"
-import TaskCard from "@/components/TaskCard.vue"
+import UserTaskCard from "@/components/UserTaskCard.vue"
+import WebScrapingTaskCard from "@/components/WebScrapingTaskCard.vue";
 </script>
 
 <template>
@@ -8,17 +9,28 @@ import TaskCard from "@/components/TaskCard.vue"
   <v-container class="my-5 text-center">
     <h1>Tasks</h1>
 
-    <v-btn class="my-5 bg-light-blue" type="submit" @click="goToTaskCreation()">New task</v-btn>
+    <v-btn class="my-5 mr-5 bg-light-blue" type="submit" @click="goToUserTaskCreation()">New task</v-btn>
+    <v-btn class="my-5 bg-light-blue" type="submit" @click="goToWebScrapingTaskCreation()">New web scraping task</v-btn>
 
-    <TaskCard
-      v-for="task in tasksData"
-      :description="task.description"
-      :task-type="task.task_type"
-      :state="task.state"
-      :url-for-scraping="task.url_for_scraping"
-      :task-id="task.id"
-      @loadTaskData="loadTaskData"
-    />
+    <div v-for="task in tasksData">
+
+      <UserTaskCard
+        v-if="task.description"
+        :description=task.description
+        :state=task.state
+        :task-id="task.id"
+        @updateTasksList="getTasksData"
+      />
+
+      <WebScrapingTaskCard
+        v-else
+        :url-for-scraping="task.url_for_scraping"
+        :state=task.state
+        :task-id="task.id"
+        @updateTasksList="getTasksData"
+      />
+
+    </div>
   </v-container>
 </template>
 
@@ -36,15 +48,18 @@ import TaskCard from "@/components/TaskCard.vue"
             params: { token: localStorage.getItem("jwt_c2s_challenge") },
           });
 
-          this.tasksData = response.data || [];
+          this.tasksData = response.data;
         } catch (error) {
           this.$router.push({ path: "/error" });
           console.error(error);
         }
       },
-      goToTaskCreation() {
-        this.$router.push({ path: "/task-creation" });
-      }
+      goToUserTaskCreation() {
+        this.$router.push({ path: "/user-task-creation" });
+      },
+      goToWebScrapingTaskCreation() {
+        this.$router.push({ path: "/web-scraping-task-creation" });
+      },
     },
     mounted() {
       this.getTasksData();

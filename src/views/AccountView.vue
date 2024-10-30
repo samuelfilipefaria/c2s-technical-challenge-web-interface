@@ -67,9 +67,8 @@ import NavBar from "@/components/NavBar.vue"
         try {
           const response = await axios.delete('http://localhost:5000/users/destroy', {
             params: { token: localStorage.getItem("jwt_c2s_challenge") },
-          });
+          }).finally(_ => localStorage.clear());
 
-          this.logoutUser();
         } catch (error) {
           this.$router.push({ path: "/error" });
           console.error(error);
