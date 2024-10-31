@@ -2,7 +2,7 @@
   <v-card
     width="800"
     class="my-3 mx-auto"
-    :title="description"
+    :title="'#' + taskId + ' ' + description"
     :subtitle="state"
     append-icon="true"
     prepend-icon="mdi-account"

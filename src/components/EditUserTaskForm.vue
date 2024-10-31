@@ -13,7 +13,7 @@
             <v-combobox
               v-model="task.state"
               label="State"
-              :items="['Pendente', 'Em progresso', 'Concluída', 'Falha']"
+              :items="['pending', 'in progress', 'completed', 'failed']"
             ></v-combobox>
 
             <v-btn class="mt-2 bg-light-blue" type="submit" @click="editTask()">Edit task</v-btn>

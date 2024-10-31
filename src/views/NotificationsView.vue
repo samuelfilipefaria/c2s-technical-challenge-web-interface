@@ -8,13 +8,17 @@ import NotificationCard from "@/components/NotificationCard.vue"
   <v-container class="my-5 text-center">
     <h1>Notifications</h1>
 
+    <v-progress-circular
+      v-if="isLoading"
+      color="primary"
+      indeterminate
+      class="my-5 mx-auto d-block"
+      size="50"
+    ></v-progress-circular>
+
     <NotificationCard
       v-for="notification in notificationsData"
-      :taskId="notification.task_id"
-      :taskDescription="notification.task_description"
-      :operation="notification.operation"
-      :scrapedData="notification.scraped_data"
-      :notificationId="notification.id"
+      :notification-text="notification.notification_text"
     />
   </v-container>
 </template>
@@ -24,6 +28,7 @@ import NotificationCard from "@/components/NotificationCard.vue"
 
   export default {
     data: () => ({
+      isLoading: true,
       notificationsData: []
     }),
     methods: {
@@ -33,8 +38,8 @@ import NotificationCard from "@/components/NotificationCard.vue"
             params: { token: localStorage.getItem("jwt_c2s_challenge") },
           });
 
-          this.notificationsData = response.data || [];
-          console.log(this.notificationsData);
+          this.notificationsData = response.data.notifications || [];
+          this.isLoading = false;
         } catch (error) {
           this.$router.push({ path: "/error" });
           console.error(error);

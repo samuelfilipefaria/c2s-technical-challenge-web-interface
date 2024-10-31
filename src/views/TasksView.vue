@@ -12,8 +12,15 @@ import WebScrapingTaskCard from "@/components/WebScrapingTaskCard.vue";
     <v-btn class="my-5 mr-5 bg-light-blue" type="submit" @click="goToUserTaskCreation()">New task</v-btn>
     <v-btn class="my-5 bg-light-blue" type="submit" @click="goToWebScrapingTaskCreation()">New web scraping task</v-btn>
 
-    <div v-for="task in tasksData">
+    <v-progress-circular
+      v-if="isLoading"
+      color="primary"
+      indeterminate
+      class="my-5 mx-auto d-block"
+      size="50"
+    ></v-progress-circular>
 
+    <div v-for="task in tasksData">
       <UserTaskCard
         v-if="task.description"
         :description=task.description
@@ -29,7 +36,6 @@ import WebScrapingTaskCard from "@/components/WebScrapingTaskCard.vue";
         :task-id="task.id"
         @updateTasksList="getTasksData"
       />
-
     </div>
   </v-container>
 </template>
@@ -39,6 +45,7 @@ import WebScrapingTaskCard from "@/components/WebScrapingTaskCard.vue";
 
   export default {
     data: () => ({
+      isLoading: true,
       tasksData: []
     }),
     methods: {
@@ -48,7 +55,8 @@ import WebScrapingTaskCard from "@/components/WebScrapingTaskCard.vue";
             params: { token: localStorage.getItem("jwt_c2s_challenge") },
           });
 
-          this.tasksData = response.data;
+          this.tasksData = response.data.tasks;
+          this.isLoading = false;
         } catch (error) {
           this.$router.push({ path: "/error" });
           console.error(error);

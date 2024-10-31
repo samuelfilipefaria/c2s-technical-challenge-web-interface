@@ -51,7 +51,7 @@ export default {
   },
   computed: {
     isWebScrapingRunning() {
-      return this.state.toLowerCase() == 'pendente' || this.state.toLowerCase() == 'em progresso';
+      return this.state.toLowerCase() == 'pending' || this.state.toLowerCase() == 'in progress';
     },
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="isUserLoged">
+  <v-container>
     <v-row class="text-center">
       <v-col cols="4">
         <RouterLink class="menu-link" to="/account"><v-btn variant="text">Account</v-btn></RouterLink>
@@ -14,7 +14,7 @@
   </v-container>
 </template>
 
-<script>
+<!-- <script>
   import axios from "axios";
 
   export default {
@@ -34,4 +34,4 @@
       this.getUserData();
     }
   }
-</script>
+</script> -->

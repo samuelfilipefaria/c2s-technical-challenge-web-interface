@@ -3,7 +3,7 @@ import NavBar from "@/components/NavBar.vue"
 </script>
 
 <template>
-  <NavBar/>
+  <NavBar v-if="user.name != '' || user.email != ''"/>
   <v-container class="text-center mt-5">
     <v-row>
       <v-col cols="12">
