@@ -64,15 +64,9 @@ import NavBar from "@/components/NavBar.vue"
         this.reloadPage();
       },
       async deleteUser() {
-        try {
-          const response = await axios.delete('http://localhost:5000/users/destroy', {
-            params: { token: localStorage.getItem("jwt_c2s_challenge") },
-          }).finally(_ => localStorage.clear());
-
-        } catch (error) {
-          this.$router.push({ path: "/error" });
-          console.error(error);
-        }
+        const response = await axios.delete('http://localhost:5000/users/destroy', {
+          params: { token: localStorage.getItem("jwt_c2s_challenge") },
+        }).finally(_ => this.logoutUser());
       },
       goToEditionPage() {
         this.$router.push({path: "/edition"});
