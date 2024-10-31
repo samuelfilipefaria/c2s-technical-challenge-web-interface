@@ -4,7 +4,7 @@ export async function createUserTask(userTaskDescription) {
   await axios.post('http://localhost:3000/user_tasks/create', {
     token: localStorage.getItem("jwt_c2s_challenge"),
     description: userTaskDescription,
-    state: "pendente",
+    state: "pending",
   });
 }
 
@@ -41,7 +41,7 @@ export async function createWebScrapingTask(urlForScraping) {
   await axios.post('http://localhost:3000/web_scraping_tasks/create', {
     token: localStorage.getItem("jwt_c2s_challenge"),
     url_for_scraping: urlForScraping,
-    state: "pendente",
+    state: "pending",
   });
 }
 
